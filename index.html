@@ -205,9 +205,9 @@
       #hero p {
         font-size: clamp(0.7rem, 3vw, 0.95rem);
       }
-      h2:not(.brand-text) {
+      /* h2:not(.brand-text) {
         font-size: clamp(0.65rem, 2.5vw, 0.8rem) !important;
-      }
+      } */
       h3.font-black {
         font-size: clamp(1.2rem, 4vw, 2.2rem) !important;
       }
@@ -224,7 +224,6 @@
         font-size: clamp(0.8rem, 2.5vw, 1.2rem) !important;
       }
 
-      /* ===== تحسين preloader: فيديو يظهر بالكامل على جميع الأجهزة ===== */
       #preloader {
         background: black;
         display: flex;
@@ -236,9 +235,9 @@
       #preloader video {
         width: 100%;
         height: 100%;
-        object-fit: contain; /* يضمن ظهور الفيديو كاملاً دون قص */
+        object-fit: contain;
       }
-      /* تعديل خاص بأجهزة سطح المكتب (من 1024px فأكبر) لجعل الفيديو يغطي الشاشة بالكامل */
+
       @media (min-width: 1024px) {
         #preloader video {
           object-fit: cover;
@@ -295,20 +294,45 @@
           width: 150px;
         }
       }
+
+      .accreditation-img {
+        width: 100%;
+        height: 160px;
+        object-fit: contain;
+        background-color: rgba(255, 255, 255, 0.05);
+        border-radius: 12px;
+        margin-bottom: 1rem;
+        border: 1px solid rgba(var(--gold-rgb), 0.3);
+        padding: 0.5rem;
+      }
+
+      .glass-card p {
+        font-size: clamp(0.6rem, 1.8vw, 0.75rem) !important;
+        line-height: 1.6;
+      }
+      /*contact style */
+      .form-input::placeholder {
+        color: var(--gold);
+        opacity: 0.6;
+      }
+
+      .form-input:hover,
+      .form-input:focus {
+        border-color: var(--gold) !important;
+        outline: none;
+        box-shadow: 0 0 6px var(--gold);
+      }
     </style>
   </head>
   <body>
-    <!-- Preloader: فيديو مخصص للموبايل وآخر للأجهزة الأكبر حجماً -->
     <div
       id="preloader"
       class="fixed inset-0 flex items-center justify-center overflow-hidden"
     >
       <video autoplay muted playsinline preload="auto" id="preloaderVideo">
-        <!-- فيديو مخصص للموبايل (شاشات بعرض 768px أو أقل) -->
         <source src="5.mp4" type="video/mp4" media="(max-width: 768px)" />
-        <!-- فيديو مخصص للكمبيوتر واللاب توب (الشاشات الأكبر) -->
+
         <source src="8.mp4" type="video/mp4" />
-        <!-- إذا لم يتوفر أي من الفيديوهات، سيظل الفيديو صامتاً (اختياري) -->
       </video>
     </div>
 
@@ -341,8 +365,12 @@
           <a href="#about" class="nav-link hover:text-gold" data-i18n="navAbout"
             >من نحن</a
           >
-          <a href="#stats" class="nav-link hover:text-gold" data-i18n="navStats"
-            >إحصائيات</a
+
+          <a
+            href="#accreditation"
+            class="nav-link hover:text-gold"
+            data-i18n="navAccreditation"
+            >الاعتماد</a
           >
           <a
             href="#clients"
@@ -402,8 +430,11 @@
         <a href="#about" class="hover:text-gold transition" data-i18n="navAbout"
           >من نحن</a
         >
-        <a href="#stats" class="hover:text-gold transition" data-i18n="navStats"
-          >إحصائيات</a
+        <a
+          href="#accreditation"
+          class="hover:text-gold transition"
+          data-i18n="navAccreditation"
+          >الاعتماد</a
         >
         <a
           href="#clients"
@@ -581,8 +612,9 @@
         <div class="w-full md:w-1/2">
           <div class="relative group">
             <img
-              src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&q=80&w=1000"
-              class="rounded-2xl shadow-2xl border border-gold/20 w-full h-auto"
+              src="about.jpeg"
+              class="rounded-2xl shadow-2xl w-full object-cover"
+              style="border: 2px solid var(--gold); aspect-ratio: 16/10"
               alt="قانون"
             />
             <div
@@ -597,26 +629,25 @@
         </div>
         <div class="w-full md:w-1/2">
           <h2
-            class="text-base md:text-lg font-bold mb-2 md:mb-3"
+            class="text-xl md:text-2xl font-bold mb-2 md:mb-3"
             data-i18n="aboutSubtitle"
           >
-            لماذا باوارث؟
+            لماذا نحن؟
           </h2>
-          <h3
-            class="text-xl md:text-3xl lg:text-4xl font-black mb-3 md:mb-5 leading-tight"
-            data-i18n="aboutTitle"
-          >
-            نحن لا نكسب القضايا فحسب، بل نصنع السوابق القانونية.
-          </h3>
           <p
             class="text-sm md:text-base mb-5 md:mb-7 leading-relaxed"
             data-i18n="aboutDesc"
           >
-            تأسست شركة صالح إبراهيم باوارث وخالد علي باوارث للمحاماة لتكون
-            المرجع الأول في الشرق الأوسط. نجمع بين الخبرة الأكاديمية العميقة
-            والتحرك الميداني الجريء.
+            تأسست شركة صالح إبراهيم باوارث وخالد علي باوارث للمحاماة والاستشارات
+            القانونية لتكون مرجعًا قانونيًا رفيع المستوى في المملكة العربية
+            السعودية؛ شركة قانونية تدار بعقل استراتيجي وخبرة متراكمة تجمع بين
+            الصرامة والحضور الحاسم، والقدرة على إدارة أعقد النزاعات القانونية
+            وأكثرها حساسية بثقة وجرأة واقتدار. نحن لا نكتفي بالدفاع عن حقوقك؛ بل
+            نرسم مسارها القانوني بثباتٍ واقتدار، ونمضي معك خطوةً بخطوة حتى
+            تطمئن.
           </p>
-          <ul class="space-y-2 text-xs md:text-sm">
+
+          <!-- <ul class="space-y-2 text-xs md:text-sm">
             <li class="flex items-center gap-2">
               <i class="fas fa-check"></i>
               <span data-i18n="aboutLi1">فريق من المستشارين الدوليين</span>
@@ -624,20 +655,20 @@
             <li class="flex items-center gap-2">
               <i class="fas fa-check"></i>
               <span data-i18n="aboutLi2"
-                >سرية بيانات مطلقة بنظام تشفير عسكري</span
+                >سريةُ البيانات مطلقةٌ بنظام تشفير عسكري</span
               >
             </li>
             <li class="flex items-center gap-2">
               <i class="fas fa-check"></i>
-              <span data-i18n="aboutLi3">استجابة فورية على مدار الساعة</span>
+              <span data-i18n="aboutLi3">استجابةٌ فورية على مدار الساعة</span>
             </li>
-          </ul>
+          </ul> -->
         </div>
       </div>
     </section>
 
     <section
-      id="stats"
+      id="accreditation"
       class="relative py-16 md:py-20 px-4 md:px-16 overflow-hidden"
     >
       <video class="section-video" autoplay muted loop playsinline>
@@ -650,48 +681,198 @@
       <div class="section-content max-w-7xl mx-auto text-center">
         <h2
           class="text-xs sm:text-sm tracking-[0.3em] uppercase mb-1"
-          data-i18n="statsSubtitle"
+          data-i18n="accreditationSubtitle"
         >
-          أرقامنا
+          الاعتماد
         </h2>
         <h3
-          class="text-2xl sm:text-3xl md:text-5xl font-black mb-8 md:mb-12"
-          data-i18n="statsTitle"
+          class="text-2xl sm:text-3xl md:text-5xl font-black mb-4 md:mb-6"
+          data-i18n="accreditationTitle"
         >
-          إحصائيات تروي قصتنا
+          اعتمادات الشركة
         </h3>
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-6">
-          <div class="glass-card p-3 md:p-6 rounded-2xl">
-            <div
-              class="stat-number text-2xl md:text-4xl font-black mb-0.5 md:mb-1"
+
+        <p
+          class="text-sm md:text-base max-w-4xl mx-auto mb-10 md:mb-14 leading-relaxed opacity-90"
+          data-i18n="accreditationDesc"
+        >
+          نزاول أعمالنا ضمن منظومة تنظيمية متكاملة ترتبط بعدد من الجهات الحكومية
+          والتنظيمية في المملكة العربية السعودية، حيث تستند ممارستنا المهنية إلى
+          الأطر النظامية والتراخيص والاعتمادات الصادرة عن الجهات المختصة، بما
+          يضمن تقديم خدمات قانونية واستشارية وفق أعلى المعايير المهنية
+          والتنظيمية المعتمدة في المملكة.
+        </p>
+
+        <div
+          class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-7"
+        >
+          <div
+            class="glass-card p-5 md:p-6 rounded-2xl flex flex-col text-start"
+          >
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/e/e1/Logo_Ministry_of_Commerce.svg"
+              alt="وزارة التجارة"
+              class="accreditation-img w-full"
+            />
+            <h4 class="text-lg md:text-xl font-bold mb-1" data-i18n="acc1Title">
+              وزارة التجارة
+            </h4>
+            <h5
+              class="text-[0.55rem] md:text-[0.65rem] font-bold mb-2 opacity-90"
+              data-i18n="acc1Subtitle"
             >
-              +500
-            </div>
-            <p class="text-xs md:text-sm" data-i18n="stat1">قضية ناجحة</p>
+              مرتبطةٌ أعمالُنا بالمنظومة التنظيمية لوزارة التجارة
+            </h5>
+            <p
+              class="text-xs md:text-sm opacity-90 leading-relaxed"
+              data-i18n="acc1Desc"
+            >
+              تُدار أعمالُنا القانونية والتجارية ضمن الإطار التنظيمي الذي تشرف
+              عليه وزارة التجارة في المملكة العربية السعودية، بما يشمل التعامل
+              مع الأنظمة التجارية ونظام الشركات واللوائح التنفيذية المرتبطة بها،
+              إلى جانب إدارة الإجراءات النظامية المرتبطة بالأعمال والكيانات
+              التجارية وفق الأطر المعتمدة.
+            </p>
           </div>
-          <div class="glass-card p-3 md:p-6 rounded-2xl">
-            <div
-              class="stat-number text-2xl md:text-4xl font-black mb-0.5 md:mb-1"
+
+          <div
+            class="glass-card p-5 md:p-6 rounded-2xl flex flex-col text-start"
+          >
+            <img
+              src="https://www.almowaten.net/wp-content/uploads/%D8%A7%D9%84%D9%87%D9%8A%D8%A6%D8%A9-%D8%A7%D9%84%D8%B3%D8%B9%D9%88%D8%AF%D9%8A%D8%A9-%D9%84%D9%84%D9%85%D8%AD%D8%A7%D9%85%D9%8A%D9%86.png"
+              alt="الهيئة السعودية للمحامين"
+              class="accreditation-img w-full"
+            />
+            <h4 class="text-lg md:text-xl font-bold mb-1" data-i18n="acc2Title">
+              الهيئة السعودية للمحامين
+            </h4>
+            <h5
+              class="text-[0.55rem] md:text-[0.65rem] font-bold mb-2 opacity-90"
+              data-i18n="acc2Subtitle"
             >
-              +50
-            </div>
-            <p class="text-xs md:text-sm" data-i18n="stat2">خبير قانوني</p>
+              ممارسة المهنة ضمن المنظومة المهنية للهيئة السعودية للمحامين
+            </h5>
+            <p
+              class="text-xs md:text-sm opacity-90 leading-relaxed"
+              data-i18n="acc2Desc"
+            >
+              نزاول أعمال المحاماة والاستشارات القانونية ضمن البيئة التنظيمية
+              والمهنية التي تشرف عليها الهيئة السعودية للمحامين، مع الالتزام
+              الكامل بالمعايير المهنية والأخلاقية التي تنظم ممارسة المهنة داخل
+              المملكة.
+            </p>
           </div>
-          <div class="glass-card p-3 md:p-6 rounded-2xl">
-            <div
-              class="stat-number text-2xl md:text-4xl font-black mb-0.5 md:mb-1"
+
+          <div
+            class="glass-card p-5 md:p-6 rounded-2xl flex flex-col text-start"
+          >
+            <img
+              src="https://upload.wikimedia.org/wikipedia/ar/1/1c/%D8%B4%D8%B9%D8%A7%D8%B1_%D8%A7%D9%84%D9%87%D9%8A%D8%A6%D8%A9_%D8%A7%D9%84%D8%B3%D8%B9%D9%88%D8%AF%D9%8A%D8%A9_%D9%84%D9%84%D9%85%D9%84%D9%83%D9%8A%D8%A9_%D8%A7%D9%84%D9%81%D9%83%D8%B1%D9%8A%D8%A9.svg"
+              alt="الهيئة السعودية للملكية الفكرية"
+              class="accreditation-img w-full"
+            />
+            <h4 class="text-lg md:text-xl font-bold mb-1" data-i18n="acc3Title">
+              الهيئة السعودية للملكية الفكرية
+            </h4>
+            <h5
+              class="text-[0.6rem] md:text-[0.7rem] font-bold mb-2 opacity-90"
+              data-i18n="acc3Subtitle"
             >
-              15
-            </div>
-            <p class="text-xs md:text-sm" data-i18n="stat3">فرع حول العالم</p>
+              تعاملٌ قانوني معتمد في مجالات حماية الملكية الفكرية
+            </h5>
+            <p
+              class="text-xs md:text-sm opacity-90 leading-relaxed"
+              data-i18n="acc3Desc"
+            >
+              نقدم خدمات قانونية متخصصة في مجال حماية الملكية الفكرية ضمن الأطر
+              التنظيمية التي تشرف عليها الهيئة السعودية للملكية الفكرية، بما
+              يشمل إدارة إجراءات تسجيل العلامات التجارية وبراءات الاختراع
+              والنماذج الصناعية، إضافة إلى تقديم الاستشارات القانونية المرتبطة
+              بحماية الأصول الفكرية.
+            </p>
           </div>
-          <div class="glass-card p-3 md:p-6 rounded-2xl">
-            <div
-              class="stat-number text-2xl md:text-4xl font-black mb-0.5 md:mb-1"
+
+          <div
+            class="glass-card p-5 md:p-6 rounded-2xl flex flex-col text-start"
+          >
+            <img
+              src="https://upload.wikimedia.org/wikipedia/ar/archive/d/d8/20230709091544%21%D9%88%D8%B2%D8%A7%D8%B1%D8%A9_%D8%A7%D9%84%D9%85%D9%88%D8%A7%D8%B1%D8%AF_%D8%A7%D9%84%D8%A8%D8%B4%D8%B1%D9%8A%D8%A9_%D9%88%D8%A7%D9%84%D8%AA%D9%86%D9%85%D9%8A%D8%A9_%D8%A7%D9%84%D8%A7%D8%AC%D8%AA%D9%85%D8%A7%D8%B9%D9%8A%D8%A9.png"
+              alt="وزارة الموارد البشرية والتنمية الاجتماعية"
+              class="accreditation-img w-full"
+            />
+            <h4 class="text-lg md:text-xl font-bold mb-1" data-i18n="acc4Title">
+              وزارة الموارد البشرية والتنمية الاجتماعية
+            </h4>
+            <h5
+              class="text-[0.6rem] md:text-[0.7rem] font-bold mb-2 opacity-90"
+              data-i18n="acc4Subtitle"
             >
-              25
-            </div>
-            <p class="text-xs md:text-sm" data-i18n="stat4">عاماً من التميز</p>
+              التعامل مع الأنظمة والتنظيمات المرتبطة بسوق العمل
+            </h5>
+            <p
+              class="text-xs md:text-sm opacity-90 leading-relaxed"
+              data-i18n="acc4Desc"
+            >
+              نقدم خدمات قانونية واستشارية متقدمة في أنظمة العمل والتنظيمات
+              المرتبطة بها ضمن الإطار الذي تشرف عليه وزارة الموارد البشرية
+              والتنمية الاجتماعية، بما يشمل مراجعة اللوائح الداخلية للشركات
+              وتنظيم علاقات العمل وفق الأنظمة المعتمدة.
+            </p>
+          </div>
+
+          <div
+            class="glass-card p-5 md:p-6 rounded-2xl flex flex-col text-start"
+          >
+            <img
+              src="https://upload.wikimedia.org/wikipedia/ar/8/81/%D8%B4%D8%B9%D8%A7%D8%B1_%D8%A7%D9%84%D9%87%D9%8A%D8%A6%D8%A9_%D8%A7%D9%84%D8%AC%D8%AF%D9%8A%D8%AF_%D9%85%D9%84%D9%88%D9%86.png"
+              alt="هيئة الاتصالات والفضاء والتقنية"
+              class="accreditation-img w-full"
+            />
+            <h4 class="text-lg md:text-xl font-bold mb-1" data-i18n="acc5Title">
+              هيئة الاتصالات والفضاء والتقنية
+            </h4>
+            <h5
+              class="text-[0.6rem] md:text-[0.7rem] font-bold mb-2 opacity-90"
+              data-i18n="acc5Subtitle"
+            >
+              التعامل القانوني مع الأنظمة المنظِّمة لقطاع التقنية والاتصالات
+            </h5>
+            <p
+              class="text-xs md:text-sm opacity-90 leading-relaxed"
+              data-i18n="acc5Desc"
+            >
+              نقدم خدمات قانونية للشركات العاملة في قطاع التقنية والاتصالات ضمن
+              البيئة التنظيمية التي تشرف عليها هيئة الاتصالات والفضاء والتقنية،
+              بما يضمن توافق الأنشطة الرقمية والتقنية مع الأنظمة واللوائح
+              التنظيمية المعمول بها في المملكة.
+            </p>
+          </div>
+
+          <div
+            class="glass-card p-5 md:p-6 rounded-2xl flex flex-col text-start"
+          >
+            <img
+              src="https://www.wzufa.com/wp-content/uploads/2022/09/Jeddah-Chamber.png"
+              alt="غرفة جدة"
+              class="accreditation-img w-full"
+            />
+            <h4 class="text-lg md:text-xl font-bold mb-1" data-i18n="acc6Title">
+              غرفة جدة
+            </h4>
+            <h5
+              class="text-[0.6rem] md:text-[0.7rem] font-bold mb-2 opacity-90"
+              data-i18n="acc6Subtitle"
+            >
+              حضورٌ مؤسسي ضمن مجتمع الأعمال
+            </h5>
+            <p
+              class="text-xs md:text-sm opacity-90 leading-relaxed"
+              data-i18n="acc6Desc"
+            >
+              يمتد حضورنا المهني إلى مجتمع الأعمال من خلال الارتباط المؤسسي مع
+              غرفة جدة، بما يعزز التعاون مع مختلف القطاعات الاقتصادية ويسهم في
+              دعم بيئة الأعمال وتقديم الخدمات القانونية للشركات ورواد الأعمال.
+            </p>
           </div>
         </div>
       </div>
@@ -940,21 +1121,21 @@
                 type="text"
                 data-i18n-placeholder="namePlaceholder"
                 placeholder="الاسم"
-                class="w-full p-2 mb-2 md:mb-3 bg-black/50 rounded-lg text-xs md:text-sm"
+                class="form-input w-full p-2 mb-2 md:mb-3 bg-black/50 rounded-lg text-xs md:text-sm"
                 style="border: 1px solid var(--gold)"
               />
               <input
                 type="email"
                 data-i18n-placeholder="emailPlaceholder"
                 placeholder="البريد الإلكتروني"
-                class="w-full p-2 mb-2 md:mb-3 bg-black/50 rounded-lg text-xs md:text-sm"
+                class="form-input w-full p-2 mb-2 md:mb-3 bg-black/50 rounded-lg text-xs md:text-sm"
                 style="border: 1px solid var(--gold)"
               />
               <textarea
                 rows="3"
                 data-i18n-placeholder="messagePlaceholder"
                 placeholder="الرسالة"
-                class="w-full p-2 mb-2 md:mb-3 bg-black/50 rounded-lg text-xs md:text-sm"
+                class="form-input w-full p-2 mb-2 md:mb-3 bg-black/50 rounded-lg text-xs md:text-sm"
                 style="border: 1px solid var(--gold)"
               ></textarea>
               <button
@@ -969,7 +1150,10 @@
       </div>
     </section>
 
-    <footer class="bg-black py-6 md:py-10 border-t border-gold/20 px-4 md:px-6">
+    <footer
+      class="bg-black py-6 md:py-10 px-4 md:px-6"
+      style="border-top: 1px solid var(--gold)"
+    >
       <div class="max-w-7xl mx-auto text-center">
         <div
           class="footer-logo text-lg md:text-2xl font-black mb-3 md:mb-5"
@@ -1002,11 +1186,9 @@
 
     <script>
       (function () {
-        // ========== PRELOADER: فيديو مرة واحدة فقط، مع تغطية كاملة ==========
         const preloader = document.getElementById("preloader");
         const preloaderVideo = document.getElementById("preloaderVideo");
 
-        // إزالة أي loop
         preloaderVideo.removeAttribute("loop");
 
         function hidePreloader() {
@@ -1025,7 +1207,6 @@
         preloaderVideo.addEventListener("error", hidePreloader);
         setTimeout(hidePreloader, 5000);
 
-        // ========== ألوان متغيرة ==========
         const colorOptions = [
           { name: "ذهبي أساسي", hex: "#D4B87B", rgb: "212,184,123" },
           { name: "أصفر فاتح", hex: "#F0E68C", rgb: "240,230,140" },
@@ -1189,7 +1370,7 @@
           });
         }
 
-        // ========== الترجمة (تم تحديث heroDesc إلى سطرين منفصلين) ==========
+        // ========== الترجمة ==========
         const translations = {
           ar: {
             brandName:
@@ -1197,12 +1378,12 @@
             navHome: "الرئيسية",
             navServices: "خدماتنا",
             navAbout: "من نحن",
-            navStats: "إحصائيات",
+            navAccreditation: "الاعتماد",
             navClients: "عملاؤنا",
             navAwards: "جوائز",
             navFaq: "الأسئلة",
             navContact: "العمل معنا",
-            heroLine1: "شركةُ صالح إبراهيم باوارث وخالد علي باوارث",
+            heroLine1: " شركةُ صالح إبراهيم باوارث وخالد علي باوارث",
             heroLine2: " للمحاماةِ والاستشارات القانونية",
             heroDescLine1:
               "حيث تلتقي الخبرةُ بالأمانةِ، نحن لا ندافع عن قضيّتك فحسب",
@@ -1221,20 +1402,51 @@
             service3Title: "التحكيم الدولي",
             service3Desc:
               "حلُّ المنازعات التجارية العابرة للحدود وفق أعلى معايير السرية والاحترافية.",
-            aboutSubtitle: "لماذا باوراث؟",
-            aboutTitle: "نحن لا نكسب القضايا فحسب، بل نصنع السوابق القانونية.",
-            aboutDesc:
-              "تأسست شركة صالح إبراهيم باوارث وخالد علي باوارث للمحاماة لتكون المرجع الأول في الشرق الأوسط. نجمع بين الخبرة الأكاديمية العميقة والتحرك الميداني الجريء.",
-            aboutLi1: "فريق من المستشارين الدوليين",
-            aboutLi2: "سرية بيانات مطلقة بنظام تشفير عسكري",
-            aboutLi3: "استجابة فورية على مدار الساعة",
+            aboutSubtitle: "لماذا نحن؟",
+            // aboutTitle: "نحن لا نكسب القضايا فحسب، بل نصنع السوابق القانونية.",
+            aboutDesc: `تأسست شركة صالح إبراهيم باوارث وخالد علي باوارث للمحاماة والاستشارات
+    القانونية لتكون مرجعًا قانونيًا رفيع المستوى في المملكة العربية السعودية؛
+    شركة قانونية تدار بعقل استراتيجي وخبرة متراكمة تجمع بين الصرامة والحضور
+    الحاسم، والقدرة على إدارة أعقد النزاعات القانونية وأكثرها حساسية بثقة
+    وجرأة واقتدار. نحن لا نكتفي بالدفاع عن حقوقك؛ بل نرسم مسارها القانوني
+    بثباتٍ واقتدار، ونمضي معك خطوةً بخطوة حتى تطمئن.
+`,
+            // aboutLi1: "فريق من المستشارين الدوليين",
+            // aboutLi2: "سرية بيانات مطلقة بنظام تشفير عسكري",
+            // aboutLi3: "استجابة فورية على مدار الساعة",
             yearsText: "عاماً من الخبرة",
-            statsSubtitle: "أرقامنا",
-            statsTitle: "إحصائيات تروي قصتنا",
-            stat1: "قضية ناجحة",
-            stat2: "خبير قانوني",
-            stat3: "فرع حول العالم",
-            stat4: "عاماً من التميز",
+            // قسم الاعتماد
+            accreditationSubtitle: "الاعتماد",
+            accreditationTitle: "اعتمادات الشركة",
+            accreditationDesc:
+              "نزاول أعمالنا ضمن منظومة تنظيمية متكاملة ترتبط بعدد من الجهات الحكومية والتنظيمية في المملكة العربية السعودية، حيث تستند ممارستنا المهنية إلى الأطر النظامية والتراخيص والاعتمادات الصادرة عن الجهات المختصة، بما يضمن تقديم خدمات قانونية واستشارية وفق أعلى المعايير المهنية والتنظيمية المعتمدة في المملكة.",
+            acc1Title: "وزارة التجارة",
+            acc1Subtitle: "مرتبطةٌ أعمالُنا بالمنظومة التنظيمية لوزارة التجارة",
+            acc1Desc:
+              "    تُدار أعمالُنا القانونية والتجارية ضمن الإطار التنظيمي الذي تشرف عليه وزارة التجارة في المملكة العربية السعودية، بما يشمل التعامل مع الأنظمة التجارية ونظام الشركات واللوائح التنفيذية المرتبطة بها، إلى جانب إدارة الإجراءات النظامية المرتبطة بالأعمال والكيانات التجارية وفق الأطر المعتمدة.",
+            acc2Title: "الهيئة السعودية للمحامين",
+            acc2Subtitle:
+              "ممارسة المهنة ضمن المنظومة المهنية للهيئة السعودية للمحامين",
+            acc2Desc:
+              "نزاول أعمال المحاماة والاستشارات القانونية ضمن البيئة التنظيمية والمهنية التي تشرف عليها الهيئة السعودية للمحامين، مع الالتزام الكامل بالمعايير المهنية والأخلاقية التي تنظم ممارسة المهنة داخل المملكة.",
+            acc3Title: "الهيئة السعودية للملكية الفكرية",
+            acc3Subtitle: "تعاملٌ قانوني معتمد في مجالات حماية الملكية الفكرية",
+            acc3Desc:
+              "نقدم خدمات قانونية متخصصة في مجال حماية الملكية الفكرية ضمن الأطر التنظيمية التي تشرف عليها الهيئة السعودية للملكية الفكرية، بما يشمل إدارة إجراءات تسجيل العلامات التجارية وبراءات الاختراع والنماذج الصناعية، إضافة إلى تقديم الاستشارات القانونية المرتبطة بحماية الأصول الفكرية.",
+            acc4Title: "وزارة الموارد البشرية والتنمية الاجتماعية",
+            acc4Subtitle: "التعامل مع الأنظمة والتنظيمات المرتبطة بسوق العمل",
+            acc4Desc:
+              "نقدم خدمات قانونية واستشارية متقدمة في أنظمة العمل والتنظيمات المرتبطة بها ضمن الإطار الذي تشرف عليه وزارة الموارد البشرية والتنمية الاجتماعية، بما يشمل مراجعة اللوائح الداخلية للشركات وتنظيم علاقات العمل وفق الأنظمة المعتمدة.",
+            acc5Title: "هيئة الاتصالات والفضاء والتقنية",
+            acc5Subtitle:
+              "التعامل القانوني مع الأنظمة المنظِّمة لقطاع التقنية والاتصالات",
+            acc5Desc:
+              "نقدم خدمات قانونية للشركات العاملة في قطاع التقنية والاتصالات ضمن البيئة التنظيمية التي تشرف عليها هيئة الاتصالات والفضاء والتقنية، بما يضمن توافق الأنشطة الرقمية والتقنية مع الأنظمة واللوائح التنظيمية المعمول بها في المملكة.",
+            acc6Title: "غرفة جدة",
+            acc6Subtitle: "حضورٌ مؤسسي ضمن مجتمع الأعمال",
+            acc6Desc:
+              "يمتد حضورنا المهني إلى مجتمع الأعمال من خلال الارتباط المؤسسي مع غرفة جدة، بما يعزز التعاون مع مختلف القطاعات الاقتصادية ويسهم في دعم بيئة الأعمال وتقديم الخدمات القانونية للشركات ورواد الأعمال.",
+            // باقي الأقسام
             clientsSubtitle: "ثقة العملاء",
             clientsTitle: "من شركاؤنا",
             client1: "شركة أموال",
@@ -1280,13 +1492,13 @@
             navHome: "Home",
             navServices: "Services",
             navAbout: "About",
-            navStats: "Statistics",
+            navAccreditation: "Accreditation",
             navClients: "Clients",
             navAwards: "Awards",
             navFaq: "FAQ",
             navContact: "Contact",
-            heroLine1: "Saleh Ibrahim Bawarith",
-            heroLine2: "& Khaled Ali Bawarith Law Firm",
+            heroLine1: "Saleh Ibrahim Bawarith & Khaled Ali Bawarith",
+            heroLine2: "Law Firm & Legal Consultations",
             heroDescLine1:
               "Where expertise meets integrity — we don't just defend your case;",
             heroDescLine2: "we shield you from future risks.",
@@ -1304,21 +1516,50 @@
             service3Title: "International Arbitration",
             service3Desc:
               "Cross-border commercial dispute resolution with the highest standards of confidentiality and professionalism.",
-            aboutSubtitle: "Why Bawarith?",
-            aboutTitle: "We don't just win cases — we set legal precedents.",
-            aboutDesc:
-              "Saleh Ibrahim Bawarith & Khaled Ali Bawarith Law Firm was established to be the premier legal reference in the Middle East. We combine deep academic expertise with bold and decisive field action.",
-            aboutLi1: "Team of international consultants",
-            aboutLi2:
-              "Absolute data confidentiality with military-grade encryption",
-            aboutLi3: "24/7 immediate response",
+            aboutSubtitle: "Why Us?",
+            // aboutTitle: "We don't just win cases — we set legal precedents.",
+            aboutDesc: `Saleh Ibrahim Bawarith & Khaled Ali Bawarith Law Firm was established to be a premier legal reference in Saudi Arabia — a law firm driven by strategic thinking and deep-rooted expertise, combining rigorous precision with decisive presence, and the capacity to handle the most complex and sensitive legal disputes with confidence, boldness, and mastery. We don't merely defend your rights; we chart their legal course with steadfastness and skill, standing by your side every step of the way until you find peace of mind.`,
+            // aboutLi1: "Team of international consultants",
+            // aboutLi2:
+            //   "Absolute data confidentiality with military-grade encryption",
+            // aboutLi3: "24/7 immediate response",
             yearsText: "Years of experience",
-            statsSubtitle: "Our Numbers",
-            statsTitle: "Statistics That Tell Our Story",
-            stat1: "Successful Cases",
-            stat2: "Legal Experts",
-            stat3: "Offices Worldwide",
-            stat4: "Years of Excellence",
+            // Accreditation section
+            accreditationSubtitle: "Accreditation",
+            accreditationTitle: "Company Accreditations",
+            accreditationDesc:
+              "We operate within an integrated regulatory framework connected to several governmental and regulatory bodies in the Kingdom of Saudi Arabia. Our professional practice is based on the regulatory frameworks, licenses, and accreditations issued by the competent authorities, ensuring the provision of legal and advisory services in accordance with the highest professional and regulatory standards approved in the Kingdom.",
+            acc1Title: "Ministry of Commerce",
+            acc1Subtitle:
+              "Our operations are linked to the regulatory framework of the Ministry of Commerce",
+            acc1Desc:
+              "Our legal and commercial operations are conducted within the regulatory framework overseen by the Ministry of Commerce in Saudi Arabia, encompassing compliance with commercial regulations, the Companies Law, and related executive bylaws, as well as managing all statutory procedures pertaining to businesses and commercial entities in accordance with approved frameworks.",
+            acc2Title: "Saudi Bar Association",
+            acc2Subtitle:
+              "Practicing law within the professional framework of the Saudi Bar Association",
+            acc2Desc:
+              "We practice law and provide legal consultations within the regulatory and professional environment overseen by the Saudi Bar Association, in full compliance with the professional and ethical standards governing legal practice in the Kingdom.",
+            acc3Title: "Saudi Authority for Intellectual Property",
+            acc3Subtitle:
+              "Accredited legal practice in intellectual property protection",
+            acc3Desc:
+              "We provide specialized legal services in the field of intellectual property protection within the regulatory frameworks overseen by the Saudi Authority for Intellectual Property, including managing trademark registration, patents, and industrial designs, as well as providing legal consultations related to the protection of intellectual assets.",
+            acc4Title: "Ministry of Human Resources and Social Development",
+            acc4Subtitle:
+              "Navigating labor regulations and employment-related frameworks",
+            acc4Desc:
+              "We provide advanced legal and advisory services in labor regulations and related frameworks overseen by the Ministry of Human Resources and Social Development, including reviewing internal company policies and organizing employment relationships in accordance with approved regulations.",
+            acc5Title: "Communications, Space & Technology Commission",
+            acc5Subtitle:
+              "Legal engagement with regulations governing the technology and communications sector",
+            acc5Desc:
+              "We provide legal services to companies operating in the technology and communications sector within the regulatory environment overseen by the Communications, Space & Technology Commission, ensuring that digital and technical activities comply with the applicable regulations and regulatory frameworks in the Kingdom.",
+            acc6Title: "Jeddah Chamber",
+            acc6Subtitle:
+              "Institutional presence within the business community",
+            acc6Desc:
+              "Our professional presence extends into the business community through our institutional affiliation with the Jeddah Chamber, strengthening cooperation across various economic sectors and contributing to the support of the business environment and the delivery of legal services to companies and entrepreneurs.",
+            // Other sections
             clientsSubtitle: "Client Trust",
             clientsTitle: "Our Partners",
             client1: "Amwal Company",
@@ -1410,6 +1651,3 @@
     </script>
   </body>
 </html>
-
-
-
